@@ -1,0 +1,14 @@
+# Local Setup 
+Pulling the Docker vault image from docker hub -> docker pull vault:1.13.3
+
+To run the vault container -> docker run -d --rm --name vault-server --cap-add=IPC_LOCK -e 'VAULT_DEV_ROOT_TOKEN_ID=tdc-token' -e 'VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200' vault:1.13.3
+    -d to run in detach mode i.e. bachground running
+    --rm to delete the container once it is stopped
+    --name to give name to container
+    vault:<version> to define image and it's version
+
+Once run -> docker ps - to check it's status
+
+To get the IP of the container -> docker inspect vault-server | findstr IPAddress
+
+Setting the vault address env variable -> set VAULT_ADDR='http://172.17.0.2:8200'
